@@ -9,22 +9,24 @@ Gem::Specification.new do |spec|
   spec.authors = ["Full Fat Software"]
   spec.email = ["hey@fullfatsoftware.com"]
 
-  spec.summary = "Simple helpers to protect from spam"
-  spec.description = "SpamProtect provides small helpers and middleware to reduce spam in web apps."
-  spec.homepage = "https://example.com/spam_protect"
+  spec.summary = "A lightweight Ruby gem to help reduce spam in rails applications"
+  spec.description = "spam_protect stops contact message spam in rails applications by adding honeypot fields and timestamp checks."
+  spec.homepage = "https://github.com/fullfatsoftware/spam_protect"
   spec.license = "MIT"
 
   spec.files = Dir["lib/**/*.rb"] + %w[README.md LICENSE]
-  spec.bindir = "exe"
-  spec.executables = ["spam_protect"]
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rubocop"
+  spec.add_development_dependency "standard"
+  spec.add_development_dependency "rubocop-performance"
+
   # This gem integrates with Rails via a Railtie; require railties at runtime
   spec.add_dependency "railties", ">= 7.2"
-  # Add rails as a development dependency for testing the Railtie in CI
-  spec.add_development_dependency "rails", ">= 7.2"
+  spec.add_dependency "actionview", ">= 7.2"
+  spec.add_dependency "activesupport", ">= 7.2"
 
   # Require modern Ruby
   spec.required_ruby_version = ">= 3.3"
