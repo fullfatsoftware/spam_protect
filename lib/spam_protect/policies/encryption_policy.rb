@@ -14,7 +14,7 @@ module SpamProtect
       protected
 
       def correct_shape?
-        @payload.is_a?(Hash) && @payload.key?("timestamp") && @payload.key?("expires_at")
+        @payload.timestamp? && @payload.expires_at?
       end
 
       def between_timestamps?

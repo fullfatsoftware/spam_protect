@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require "active_support/message_encryptor"
-require "active_support/key_generator"
-
 module SpamProtect
   module Encryption
     class SecretKey

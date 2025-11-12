@@ -22,6 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "standard"
   spec.add_development_dependency "rubocop-performance"
+  spec.add_development_dependency "rails", ">= 7.2"
 
   # This gem integrates with Rails via a Railtie; require railties at runtime
   spec.add_dependency "railties", ">= 7.2"

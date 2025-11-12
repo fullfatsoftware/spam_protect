@@ -1,16 +1,33 @@
 # frozen_string_literal: true
 
-require_relative "spam_protect/version"
+require "rails"
+require "action_view"
+require "active_support"
+require "active_support/core_ext/numeric/time"
+require "active_support/message_encryptor"
+require "active_support/key_generator"
+
+require_relative "spam_protect/errors/error"
+require_relative "spam_protect/errors/encryption_unavailable"
+require_relative "spam_protect/errors/no_secret_key"
+require_relative "spam_protect/encryption"
+require_relative "spam_protect/encryption/payload"
+require_relative "spam_protect/encryption/secret_key"
+require_relative "spam_protect/policies/base_policy"
+require_relative "spam_protect/policies/honeypot_policy"
+require_relative "spam_protect/policies/timestamp_policy"
+require_relative "spam_protect/policies/encryption_policy"
+require_relative "spam_protect/guardian"
+require_relative "spam_protect/current_time"
 require_relative "spam_protect/form_builder"
+require_relative "spam_protect/version"
 require_relative "spam_protect/railtie"
 require_relative "spam_protect/controller_helpers"
 
 module SpamProtect
-  class Error < StandardError; end
-
   # Configuration object for the gem
   class Config
-    attr_accessor :honeypot_field, :timestamp_field, :honeypot_class, :min_seconds
+    attr_accessor :honeypot_field, :timestamp_field, :honeypot_class, :min_seconds, :signature_secret, :signature_expiry
 
     def initialize
       @honeypot_field = :spam_check
@@ -18,7 +35,7 @@ module SpamProtect
       @honeypot_class = "spam_protect_honeypot"
       @min_seconds = 2
       @signature_secret = nil
-      @signature_expiry = nil
+      @signature_expiry = 6.hours
     end
   end
 

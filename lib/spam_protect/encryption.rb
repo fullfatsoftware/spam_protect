@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require "active_support/message_encryptor"
-require "active_support/key_generator"
-
 module SpamProtect
   module Encryption
     module_function
@@ -15,7 +12,7 @@ module SpamProtect
 
     # Decrypt and verify a token. Returns the payload (usually a Hash) or nil.
     def decrypt(token)
-      encryptor = ActiveSupport::MessageEncryptor.new(key)
+      encryptor = ActiveSupport::MessageEncryptor.new(secret_key)
       encryptor.decrypt_and_verify(token)
     end
 

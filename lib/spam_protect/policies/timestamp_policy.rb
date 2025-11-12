@@ -9,7 +9,10 @@ module SpamProtect
       end
 
       def valid?
+        return false if @timestamp.blank?
+
         now = CurrentTime.now
+
         submitted_at = Time.at(@timestamp.to_i)
 
         (now - submitted_at) >= @min_seconds

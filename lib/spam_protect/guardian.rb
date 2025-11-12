@@ -9,11 +9,13 @@ module SpamProtect
     end
 
     def valid?
-      payload = SpamProtect::Encryption.decrypt(@encrypted_timestamp)
+      payload = SpamProtect::Encryption::Payload.new(
+        SpamProtect::Encryption.decrypt(@encrypted_timestamp)
+      )
 
-      encryption_policy = Policies::EncryptionPolicy.new(payload, @min_seconds)
+      encryption_policy = Policies::EncryptionPolicy.new(payload)
 
-      return false if !encryption_policy.invalid?
+      return false if encryption_policy.invalid?
 
       honeypot_policy = Policies::HoneypotPolicy.new(@honeypot_value)
 
