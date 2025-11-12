@@ -30,7 +30,7 @@ module SpamProtect
         end
 
         def from_rails
-          defined?(Rails) && Rails.application.respond_to?(:secret_key_base) ? Rails.application.secret_key_base : nil
+          (defined?(Rails) && Rails.application.respond_to?(:secret_key_base)) ? Rails.application.secret_key_base : nil
         end
       end
     end
