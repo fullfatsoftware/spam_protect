@@ -2,6 +2,8 @@ PATH
   remote: .
   specs:
     spam_protect (0.1.0)
+      actionview (>= 7.2)
+      activesupport (>= 7.2)
       railties (>= 7.2)
 
 GEM
@@ -262,6 +264,9 @@ DEPENDENCIES
   rubocop-performance
   spam_protect!
   standard
+
+RUBY VERSION
+   ruby 3.4.1p0
 
 BUNDLED WITH
    2.6.2
