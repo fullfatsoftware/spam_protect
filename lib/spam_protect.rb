@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "rails"
 require "action_view"
 require "active_support"
 require "active_support/core_ext/numeric/time"
