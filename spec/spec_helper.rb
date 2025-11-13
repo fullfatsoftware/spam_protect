@@ -6,6 +6,9 @@ require "securerandom"
 
 RSpec.configure do |config|
   SpamProtect.configure do |c|
+    c.honeypot_field = :spam_check
+    c.timestamp_field = :spam_timestamp
+    c.honeypot_class = "spam_protect_honeypot"
     c.signature_secret = SecureRandom.hex(64)
   end
 

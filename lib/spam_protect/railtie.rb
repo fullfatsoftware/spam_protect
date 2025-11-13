@@ -5,6 +5,9 @@ module SpamProtect
     initializer "spam_protect.action_view" do
       ActiveSupport.on_load(:action_view) do
         require_relative "form_builder"
+        require_relative "view_helpers"
+        ActionView::Helpers::FormBuilder.include(SpamProtect::FormBuilderMethods)
+        ActionView::Base.include(SpamProtect::ViewHelpers)
       end
     end
 

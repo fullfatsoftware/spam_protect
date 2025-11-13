@@ -22,7 +22,6 @@ module SpamProtect
         end
       end
 
-      # force the keys to be strings so we always have a consistent format
       def to_h
         {
           "timestamp" => timestamp,

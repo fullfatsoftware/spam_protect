@@ -5,16 +5,26 @@ require "spec_helper"
 RSpec.describe SpamProtect::ControllerHelpers do
   let(:controller) { Class.new { include SpamProtect::ControllerHelpers }.new }
 
+  before do
+    allow(controller).to receive(:cookies).and_return({"spam_protect_token" => cookie_token})
+  end
+
   describe "#validate_spam_protect_params" do
     let(:token_now) do
       SpamProtect::Encryption.encrypt(
-        SpamProtect::Encryption::Payload.generate
+        SpamProtect::Encryption::Payload.generate.to_h
       )
     end
 
     let(:token_earlier) do
       SpamProtect::Encryption.encrypt(
-        {timestamp: Time.now.to_i - 10, expires_at: Time.now.to_i + 3600}
+        SpamProtect::Encryption::Payload.new({timestamp: Time.now.to_i - 10, expires_at: Time.now.to_i + 3600}).to_h
+      )
+    end
+
+    let(:cookie_token) do
+      SpamProtect::Encryption.encrypt(
+        SpamProtect::Encryption::Payload.new({timestamp: Time.now.to_i - 10, expires_at: Time.now.to_i + 3600}).to_h
       )
     end
 

@@ -10,7 +10,7 @@ module SpamProtect
       honeypot_value = params[honeypot_key]
       encrypted_timestamp = params[timestamp_key]
 
-      guardian = SpamProtect::Guardian.new(honeypot_value, encrypted_timestamp, min_seconds)
+      guardian = SpamProtect::Guardian.new(honeypot_value, encrypted_timestamp, cookies["spam_protect_token"], min_seconds)
       guardian.valid?
     end
   end

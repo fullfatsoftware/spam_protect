@@ -8,11 +8,11 @@ module SpamProtect
           result = from_configuration || from_rails
 
           unless result.present?
-            raise Errors::NoSecretKey.new
+            raise Errors::NoSecretKey
           end
 
           unless defined?(ActiveSupport::KeyGenerator) && defined?(ActiveSupport::MessageEncryptor)
-            raise Errors::EncryptionUnavailable.new
+            raise Errors::EncryptionUnavailable
           end
 
           key_len = ActiveSupport::MessageEncryptor.key_len
