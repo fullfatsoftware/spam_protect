@@ -13,7 +13,7 @@ module SpamProtect
         end
 
         # Decryption/validity is checked elsewhere
-        @cookie.present? && @cookie.strip != ""
+        @cookie.to_s.strip.present?
       end
     end
   end
