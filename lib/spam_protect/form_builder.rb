@@ -9,7 +9,7 @@ module SpamProtect
       wrapper_class = SpamProtect.config.wrapper_class
 
       payload = Encryption::Payload.generate
-      token = Encryption.encrypt(payload)
+      token = Encryption.encrypt(payload.to_h)
 
       honeypot = @template.text_field_tag("#{@object_name}[#{name}]", nil, class: honeypot_class, autocomplete: "off", tabindex: "-1")
       signature_input = @template.hidden_field_tag("#{@object_name}[#{timestamp_name}]", token)
