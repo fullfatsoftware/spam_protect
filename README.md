@@ -93,6 +93,7 @@ Clone the repository and run:
 
     bundle install
     bundle exec rspec
+    bundle exec rubocop # for linting
 
 ### Requirements
 
