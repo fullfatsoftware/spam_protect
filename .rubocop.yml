@@ -1,0 +1,28 @@
+require:
+  - standard
+
+plugins:
+  - rubocop-performance
+
+inherit_gem:
+  standard: config/base.yml
+
+AllCops:
+  SuggestExtensions: false
+  Exclude:
+    - 'vendor/**/*'
+  DisabledByDefault: true
+  TargetRubyVersion: 3.4
+  NewCops: enable
+
+Performance:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
