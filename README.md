@@ -31,8 +31,16 @@ Use the form helper method `spam_protect_field` within your forms to include the
 This generates output similar to:
 
 ```html
-<input type="text" name="comment[hp_field]" class="spam-protect-honeypot" autocomplete="off" tabindex="-1" />
+<input type="text" name="comment[hp_field]" class="sp_hp" autocomplete="off" tabindex="-1" />
 <input type="hidden" name="comment[sp_timestamp]" value="encrypted_token_here" />
+```
+
+Visually hide the honeypot field with CSS:
+
+```css
+.sp_hp {
+  display: none;
+}
 ```
 
 Include the JavaScript tag in any views where forms with spam protection are used:
