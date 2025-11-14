@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: RuboCop
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+
+      - name: Install dependencies
+        run: bundle install --path vendor/bundle --jobs 4 --retry 3
+
+      - name: Run RuboCop
+        run: bundle exec rubocop
+
+  test:
+    name: RSpec
+    runs-on: ubuntu-latest
+    needs: lint
+    strategy:
+      matrix:
+        ruby: ['3.3', '3.4']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - name: Install dependencies
+        run: bundle install --path vendor/bundle --jobs 4 --retry 3
+
+      - name: Run tests
+        run: bundle exec rspec --format documentation
