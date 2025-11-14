@@ -16,7 +16,7 @@ And then execute:
 
 Then add the initializer to your Rails application:
 
-    rails generate spam_protect:install
+    bin/rails generate spam_protect:install
 
 ## Usage
 
@@ -39,7 +39,7 @@ Visually hide the honeypot field with CSS:
 
 ```css
 .sp_hp {
-  display: none;
+  display: none !important;
 }
 ```
 

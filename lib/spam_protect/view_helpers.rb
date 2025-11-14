@@ -3,7 +3,7 @@
 module SpamProtect
   module ViewHelpers
     def spam_protect_javascript_tag
-      payload = Encryption::Payload.new.generate
+      payload = Encryption::Payload.generate
       token = Encryption.encrypt(payload.to_h)
 
       js = <<~JS
