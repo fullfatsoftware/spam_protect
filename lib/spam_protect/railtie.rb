@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "rails/railtie"
+
 module SpamProtect
   class Railtie < Rails::Railtie
     initializer "spam_protect.action_view" do

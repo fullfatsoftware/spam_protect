@@ -17,17 +17,12 @@ Gem::Specification.new do |spec|
   spec.files = Dir["lib/**/*.rb"] + %w[README.md LICENSE]
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "rubocop"
   spec.add_development_dependency "standard"
   spec.add_development_dependency "rubocop-performance"
-  spec.add_development_dependency "rails", ">= 7.2"
 
-  # This gem integrates with Rails via a Railtie; require railties at runtime
-  spec.add_dependency "railties", ">= 7.2"
-  spec.add_dependency "actionview", ">= 7.2"
-  spec.add_dependency "activesupport", ">= 7.2"
+  spec.add_dependency "rails", ">= 7.2"
 
   # Require modern Ruby
   spec.required_ruby_version = ">= 3.3"
