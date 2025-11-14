@@ -2,7 +2,6 @@
 
 Gem::Specification.new do |spec|
   spec.name = "spam_protect"
-  # Read the version from the lib file without loading the library
   version_file = File.expand_path("lib/spam_protect/version.rb", __dir__)
   spec.version = File.read(version_file).match(/VERSION\s*=\s*["'](.+)["']/)[1]
 
