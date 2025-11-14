@@ -53,13 +53,11 @@ Check the results in your controller:
 ```ruby
 class CommentsController < ApplicationController
   def create
-    spam = validate_spam_protect_params(params[:comment])
-
-    if spam
-      # Handle spam case
-    else
+    if validate_spam_protect_params(params[:comment])
       @comment = Comment.new(comment_params)
       ...
+    else
+      # handle spam case
     end
   end
 end

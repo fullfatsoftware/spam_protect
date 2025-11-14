@@ -7,6 +7,14 @@ module SpamProtect
       timestamp_key ||= SpamProtect.config.timestamp_field
       min_seconds ||= SpamProtect.config.min_seconds
 
+      unless params.is_a?(ActionController::Parameters)
+        raise ArgumentError, "params must be an instance of ActionController::Parameters"
+      end
+
+      unless params.key?(honeypot_key) && params.key?(timestamp_key)
+        raise ArgumentError, "params must include both #{honeypot_key} and #{timestamp_key} keys. Have you passed in params[:<model_name>]?"
+      end
+
       honeypot_value = params[honeypot_key]
       encrypted_timestamp = params[timestamp_key]
 
