@@ -23,7 +23,7 @@ jobs:
           ruby-version: .ruby-version
 
       - name: Install dependencies
-        run: bundle install --path vendor/bundle --jobs 4 --retry 3
+        run: bundle install --jobs 4 --retry 3
 
       - name: Run RuboCop
         run: bundle exec rubocop
@@ -44,7 +44,7 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
 
       - name: Install dependencies
-        run: bundle install --path vendor/bundle --jobs 4 --retry 3
+        run: bundle install --jobs 4 --retry 3
 
       - name: Run tests
         run: bundle exec rspec --format documentation

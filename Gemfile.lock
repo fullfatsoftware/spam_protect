@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    spam_protect (0.0.3)
+    spam_protect (0.0.4)
       rails (>= 7.2)
 
 GEM
@@ -260,9 +260,6 @@ DEPENDENCIES
   rubocop-performance
   spam_protect!
   standard
-
-RUBY VERSION
-   ruby 3.4.1p0
 
 BUNDLED WITH
    2.6.2
