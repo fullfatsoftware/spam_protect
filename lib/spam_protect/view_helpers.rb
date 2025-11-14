@@ -9,7 +9,7 @@ module SpamProtect
       js = <<~JS
         (function(){
           var token = #{token.to_json};
-          document.cookie = "spam_protect_token=" + encodeURIComponent(token) + "; path=/; SameSite=Lax; Secure"";
+          document.cookie = "spam_protect_token=" + encodeURIComponent(token) + "; path=/; SameSite=Lax; Secure";
         })();
       JS
 
