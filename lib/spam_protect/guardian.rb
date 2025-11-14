@@ -55,7 +55,7 @@ module SpamProtect
       end
 
       true
-    rescue ActiveSupport::MessageEncryptor::InvalidMessage
+    rescue
       @errors.append "Encryption failure"
       false
     end
