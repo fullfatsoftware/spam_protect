@@ -11,12 +11,14 @@ gem 'spam_protect'
 ```
 
 And then execute:
-
-    bundle install
+```bash
+bundle install
+```
 
 Then add the initializer to your Rails application:
-
-    bin/rails generate spam_protect:install
+```bash
+ bin/rails generate spam_protect:install
+```
 
 ## Usage
 
