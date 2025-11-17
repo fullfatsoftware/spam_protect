@@ -1,6 +1,6 @@
 # spam_protect
 
-A lightweight Ruby gem to help reduce spam in Rails applications.
+A lightweight Ruby gem to help reduce spam in Rails applications without relying on CAPTCHAs or third-party services. It uses a combination of honeypot fields, timestamp tokens, and optional JavaScript checks to identify and block automated spam submissions.
 
 ## Installation
 
@@ -62,6 +62,17 @@ class CommentsController < ApplicationController
   end
 end
 ```
+## How it works
+
+The gem uses a honeypot field and a timestamp token to detect spam submissions:
+
+1. **Honeypot field**: A hidden field that should remain empty. If a bot fills it out, the submission is flagged as spam. Bots often fill out all fields, including hidden ones, while human users do not see them.
+2. **Timestamp token**: A hidden field containing an encrypted timestamp of when the form was rendered. If the form is submitted too quickly (e.g., within a few seconds), it is likely a bot submission. This is encrypted to prevent tampering.
+3. **JavaScript check**: Optionally (using `config.require_js = true`), a JavaScript snippet can be included that sets a flag when the page is fully loaded. If the form is submitted without this flag being set, it indicates that JavaScript was not executed, which is common behavior for bots.
+
+These combined techniques help to effectively reduce spam submissions in web forms. We highly recommend also analysing the message contents (if available) for spammy keywords or patterns as an additional layer of protection.
+
+If you want to take this a step further, consider comibing this gem with a Fail2Ban setup to block IPs that repeatedly trigger spam protections.
 
 ## Configuration
 
