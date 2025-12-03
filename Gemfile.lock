@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    spam_protect (0.0.4)
+    spam_protect (1.1.0)
       rails (>= 7.2)
 
 GEM
