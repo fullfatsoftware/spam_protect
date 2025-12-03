@@ -47,9 +47,24 @@ Visually hide the honeypot field with CSS:
 
 Include the JavaScript tag in any views where forms with spam protection are used:
 
-```ruby
+```erb
 <%= spam_protect_javascript_tag %>
 ```
+
+### Content Security Policy (CSP) Support
+
+If your application uses a Content Security Policy with a nonce for inline scripts, pass the nonce to the helper:
+
+```erb
+<%= spam_protect_javascript_tag(nonce: content_security_policy_nonce) %>
+```
+
+This renders the script tag with the nonce attribute:
+
+```html
+<script nonce="abc123">...</script>
+```
+
 Check the results in your controller:
 
 ```ruby
